@@ -580,6 +580,12 @@ private[discipline] trait ArbitraryInstances {
       } yield headers.`Access-Control-Expose-Headers`(NonEmptyList.of(values.head, values.tail: _*))
     }
 
+  implicit val http4sTestingArbitraryForExpectHeaders: Arbitrary[headers.Expect] =
+    Arbitrary {
+      Gen.const(Expect.Continue)
+    }
+
+
   implicit val http4sTestingArbitraryForRetryAfterHeader: Arbitrary[headers.`Retry-After`] =
     Arbitrary {
       for {
